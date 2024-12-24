@@ -36,7 +36,7 @@ test = ["pytest", "coverage"]
 doc = ["sphinx", "sphinxcontrib-katex", "toml"]
 
 [tool.poetry.dev-dependencies]
-flake8 = "^3.5"
+flake8 = "^7.0.0"
 flake8-bugbear = { version = ">=18.8", python = "^3.6" }
 flake8-comprehensions = ">=1.4"
 flake8-quotes = "^2"
