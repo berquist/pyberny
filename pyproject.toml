@@ -39,7 +39,7 @@ doc = ["sphinx", "sphinxcontrib-katex", "toml"]
 flake8 = "^3.5"
 flake8-bugbear = { version = ">=18.8", python = "^3.6" }
 flake8-comprehensions = ">=1.4"
-flake8-quotes = "^2"
+flake8-quotes = "^3.0.0"
 black = { version = ">=20-beta.0", python = "^3.6" }
 pep8-naming = ">=0.7"
 isort = { version = "^5", python = "^3.6" }
