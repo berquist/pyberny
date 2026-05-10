@@ -8,8 +8,11 @@ jobs:
       - uses: actions/setup-python@e9aba2c848f5ebd159c070c61ea2c4e2b122355e # v2
         with:
           python-version: 3.x
+      - name: Install uv
+        uses: astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b  # v8.1.0
       - name: Install Poetry
-        uses: snok/install-poetry@76e04a911780d5b312d89783f7b1cd627778900a # v1
+        run: |
+          uv tool install poetry
       - name: Install dependencies
         run: pip install "sphinx<3" sphinxcontrib-katex toml
       - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
