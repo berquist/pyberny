@@ -42,7 +42,7 @@ flake8-comprehensions = ">=1.4"
 flake8-quotes = "^2"
 black = { version = ">=20-beta.0", python = "^3.6" }
 pep8-naming = ">=0.7"
-isort = { version = "^5", python = "^3.6" }
+isort = { version = "^8", python = "^3.6" }
 pydocstyle = ">=5"
 
 [tool.poetry.scripts]
