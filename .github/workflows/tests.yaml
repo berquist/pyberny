@@ -23,6 +23,8 @@ jobs:
       - name: Install MOPAC
         run: |
           sudo apt install mopac
+      - name: Install dependencies
+        run: uv sync --all-extras --all-groups
       - name: Build
         run: uv build
       - name: Install
