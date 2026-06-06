@@ -15,41 +15,17 @@ jobs:
           - "3.12"
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/setup-python@e9aba2c848f5ebd159c070c61ea2c4e2b122355e  # v2
-        with:
-          python-version: ${{ matrix.python-version }}
       - name: Install uv
         uses: astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b  # v8.1.0
-      - name: Install Poetry
-        run: |
-          uv tool install poetry
-      - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5  # v2
         with:
-          fetch-depth: 0
+          python-version: ${{ matrix.python-version }}
+      - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5  # v2
       - name: Install MOPAC
         run: |
           sudo apt install mopac
-      - name: Create Python virtual environment
-        run: |
-          python -m venv venv
-          echo VIRTUAL_ENV=$PWD/venv >>$GITHUB_ENV
-          echo $PWD/venv/bin >>$GITHUB_PATH
-          echo venv >>.git/info/exclude
-      - name: Install dependencies
-        run: pip install -U poetry-dynamic-versioning
-      - uses: actions/cache@1bd1e32a3bdc45362d1e726936510720a7c30a57  # v4
-        with:
-          path: |
-            ${{ env.VIRTUAL_ENV }}/bin
-            ${{ env.VIRTUAL_ENV }}/lib/python${{ matrix.python-version }}/site-packages
-          key: ${{ runner.os }}-${{ matrix.python-version }}
       - name: Build
-        run: poetry build
+        run: uv build
       - name: Install
-        run: pip install -U pyberny[test] --pre -f ./dist
+        run: uv pip install -f ./dist 'pyberny[test]'
       - name: Test
-        run: coverage run -m pytest -v
-      - name: Upload to Codecov
-        run: bash <(curl -s https://codecov.io/bash)
-      - name: Uninstall
-        run: pip uninstall -y pyberny
+        run: uv run --extra test coverage run -m pytest -v

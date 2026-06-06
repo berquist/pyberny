@@ -1,10 +1,10 @@
 [build-system]
-requires = ["hatchling", "uv-dynamic-versioning"]
+requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
 name = "pyberny"
-dynamic = ["version"]
+version = "0.7.0"
 description = "Molecular/crystal structure optimizer"
 readme = "README.md"
 authors = [
@@ -43,13 +43,6 @@ doc = [
 
 [project.scripts]
 berny = "berny.cli:main"
-
-[tool.hatch.version]
-source = "uv-dynamic-versioning"
-
-[tool.uv-dynamic-versioning]
-dirty = true
-pattern = '^(?P<base>\d+\.\d+\.\d+)$'
 
 [tool.black]
 skip-string-normalization = true
