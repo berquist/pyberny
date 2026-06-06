@@ -7,16 +7,16 @@ import toml
 
 sys.path.insert(0, os.path.abspath('../src'))
 with open('../pyproject.toml') as f:
-    metadata = toml.load(f)['tool']['poetry']
+    metadata = toml.load(f)
 
 project = 'PyBerny'
-author = ' '.join(metadata['authors'][0].split()[:-1])
+author = " ".join(metadata["project"]["authors"][0]["name"])
 release = version = (
-    subprocess.run(['poetry', 'version'], capture_output=True, cwd='..')
+    subprocess.run(["uv", "version"], capture_output=True, cwd="..")
     .stdout.decode()
     .split()[1]
 )
-description = metadata['description']
+description = metadata["project"]["description"]
 year_range = (2016, datetime.date.today().year)
 year_str = (
     str(year_range[0])

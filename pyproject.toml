@@ -1,19 +1,17 @@
 [build-system]
-requires = ["poetry-core>=1.0.0", "poetry-dynamic-versioning>=0.12.3"]
-build-backend = "poetry.core.masonry.api"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
-[tool.poetry]
+[project]
 name = "pyberny"
-version = "0.0.0"
+version = "0.7.0"
 description = "Molecular/crystal structure optimizer"
 readme = "README.md"
-authors = ["Jan Hermann <dev@jan.hermann.name>"]
-repository = "https://github.com/jhrmnn/pyberny"
-documentation = "https://jhrmnn.github.io/pyberny"
-license = "MPL-2.0"
-packages = [
-    { include = "berny", from = "src" },
+authors = [
+    {name = "Jan Hermann", email = "dev@jan.hermann.name"}
 ]
+license = "MPL-2.0"
+requires-python = ">=3.7"
 classifiers = [
     "Environment :: Console",
     "Intended Audience :: Science/Research",
@@ -21,38 +19,31 @@ classifiers = [
     "Topic :: Scientific/Engineering :: Chemistry",
     "Topic :: Scientific/Engineering :: Physics",
 ]
+dependencies = [
+    "numpy",
+]
 
-[tool.poetry.dependencies]
-python = "^3.6"
-numpy = "^1.15"
-pytest = { version = "^3.6", optional = true }
-coverage = { version = "^4.5", optional = true }
-sphinx = { version = "^2.2", optional = true }
-sphinxcontrib-katex = { version = "^0.5.1", optional = true }
-toml = { version = "^0.10.0", optional = true }
+[project.urls]
+repository = "https://github.com/jhrmnn/pyberny"
+documentation = "https://jhrmnn.github.io/pyberny"
 
-[tool.poetry.extras]
-test = ["pytest", "coverage"]
-doc = ["sphinx", "sphinxcontrib-katex", "toml"]
+[tool.hatch.build.targets.wheel]
+packages = ["src/berny"]
 
-[tool.poetry.dev-dependencies]
-flake8 = "^3.5"
-flake8-bugbear = { version = ">=18.8", python = "^3.6" }
-flake8-comprehensions = ">=1.4"
-flake8-quotes = "^2"
-black = { version = ">=20-beta.0", python = "^3.6" }
-pep8-naming = ">=0.7"
-isort = { version = "^5", python = "^3.6" }
-pydocstyle = ">=5"
+[project.optional-dependencies]
+test = [
+    "pytest",
+    "coverage",
+]
+doc = [
+    "sphinx (>=2.2,<3.0)",
+    "jinja2 (>=3.0,<3.1)",
+    "sphinxcontrib-katex (>=0.5.1,<0.6.0)",
+    "toml (>=0.10.0,<0.11.0)",
+]
 
-[tool.poetry.scripts]
+[project.scripts]
 berny = "berny.cli:main"
 
-[tool.poetry-dynamic-versioning]
-enable = true
-dirty = true
-pattern = '^(?P<base>\d+\.\d+\.\d+)$'
-
 [tool.black]
-target-version = ["py36"]
 skip-string-normalization = true
