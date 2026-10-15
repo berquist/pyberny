@@ -36,7 +36,7 @@ test = [
     "coverage",
 ]
 doc = [
-    "sphinx (>=2.2,<3.0)",
+    "sphinx (>=9.1,<9.2)",
     "jinja2 (>=3.0,<3.1)",
     "sphinxcontrib-katex (>=0.5.1,<0.6.0)",
     "toml (>=0.10.0,<0.11.0)",
